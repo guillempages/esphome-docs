@@ -15,9 +15,9 @@ With this component you can define images that will be downloaded, decoded and d
 
     - BMP images, currently only binary uncompressed images are supported
 
-    - JPEG
+    - JPEG images, currently only baseline images (no progressive support)
 
-    - PNG
+    - PNG images
 
 .. warning::
 
