@@ -285,7 +285,7 @@ reTerminal families.
 
 **Touch controllers** — [cst328](/components/touchscreen/cst328/) by
 [@latonita](https://github.com/latonita) ([#8011](https://github.com/esphome/esphome/pull/8011)),
-[st7123](/components/display/st7123/) integrated display-touch driver for the M5Stack Tab5 by
+[st7123](/components/touchscreen/st7123/) integrated display-touch driver for the M5Stack Tab5 by
 [@miniskipper](https://github.com/miniskipper) ([#12075](https://github.com/esphome/esphome/pull/12075)),
 [gsl3670](/components/touchscreen/gsl3670/) for Seeed reTerminal D1001 by
 [@clydebarrow](https://github.com/clydebarrow) ([#16285](https://github.com/esphome/esphome/pull/16285)), and
@@ -311,11 +311,11 @@ component by [@Passific](https://github.com/Passific)
 ([#17344](https://github.com/esphome/esphome/pull/17344)) and the Waveshare ESP32-S3-Touch-AMOLED-1.64 (SH8601)
 by [@crimike](https://github.com/crimike) ([#17386](https://github.com/esphome/esphome/pull/17386)).
 
-**Divoom Pixoo 64** — A new [pixoo](/components/pixoo/) component by
+**Divoom Pixoo 64** — A new [pixoo](/components/display/pixoo/) component by
 [@jesserockz](https://github.com/jesserockz) ([#16974](https://github.com/esphome/esphome/pull/16974)) drives the
 64×64 RGB LED matrix over SPI and exposes a light platform for panel brightness alongside the image API.
 
-**Sensors and peripherals** — A [ufm01](/components/sensor/ufm01/) ScioSense UFM-01 ultrasonic flow meter by
+**Sensors and peripherals** — A [ufm01](/components/ufm01/) ScioSense UFM-01 ultrasonic flow meter by
 [@ljungqvist](https://github.com/ljungqvist) ([#16582](https://github.com/esphome/esphome/pull/16582)) reports
 accumulated flow, flow rate, water temperature, and four diagnostic binary sensors over UART. A
 [qmi8658](/components/sensor/qmi8658/) 6-axis IMU by [@clydebarrow](https://github.com/clydebarrow)
@@ -325,7 +325,7 @@ sensing with a motion platform. The [waveshare_io_ch32v003](/components/waveshar
 CH32V003-based expander shipped on Waveshare's newer S3 boards, providing EXIO GPIO, PWM backlight control, an
 ADC battery voltage sensor, and RTC interrupt status.
 
-**Audio** — The [pcm5122](/components/pcm5122/) component grows analog gain (0/-6 dB), channel mixing
+**Audio** — The [pcm5122](/components/audio_dac/pcm5122/) component grows analog gain (0/-6 dB), channel mixing
 (stereo/left/right/swapped), configurable volume range, a standby/powerdown switch, and an XSMT enable pin, along
 with a fix for a clock register page bug that had been silently corrupting clock setup
 ([#17313](https://github.com/esphome/esphome/pull/17313)) by [@remcom](https://github.com/remcom). The
