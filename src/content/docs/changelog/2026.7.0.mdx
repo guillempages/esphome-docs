@@ -526,6 +526,10 @@ tested pre-releases, and helped in the community.
 - **Zigbee**: on ESP32 endpoint merging now combines endpoints of components by default and lets users manually
   combine them. Existing configurations require re-joining, re-interviewing, and re-configuring
   [#17402](https://github.com/esphome/esphome/pull/17402)
+- **Display Components**: The MIPI family of display drivers (`mipi_spi`, `mipi_dsi` and `mipi_rgb`) now enforce
+  configuration of mandatory components such as PSRAM and I/O expanders where required. This applies only to those
+  display models that identify integrated boards with known hardware assignments.
+  [#17405](https://github.com/esphome/esphome/pull/17405)
 {/* BREAKING_CHANGES_USERS_END */}
 
 ### Undocumented API Changes
@@ -617,6 +621,8 @@ methods were deprecated 6 months ago in favor of buffer-based variants that avoi
   continue to work as deprecated aliases through 2027.7.0 via the new alias infrastructure
   ([#17145](https://github.com/esphome/esphome/pull/17145),
   [#16826](https://github.com/esphome/esphome/pull/16826))
+- **`mipi_` display driver model config changes**: Use of `swap_xy=cv.UNDEFINED` in a model definition is deprecated.
+  [#17405](https://github.com/esphome/esphome/pull/17405)
 
 For detailed migration guides and API documentation, see the
 [ESPHome Developers Documentation](https://developers.esphome.io/).
