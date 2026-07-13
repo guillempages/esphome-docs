@@ -720,6 +720,29 @@ For detailed migration guides and API documentation, see the
 - [light] Preserve brightness on turn-off. [esphome#17103](https://github.com/esphome/esphome/pull/17103) by [@clydebarrow](https://github.com/clydebarrow) (breaking-change)
 - [zigbee] Allow to combine and merge endpoints on esp32 [esphome#17402](https://github.com/esphome/esphome/pull/17402) by [@luar123](https://github.com/luar123) (new-feature) (breaking-change)
 
+### Beta Changes
+
+- [usb_uart] Fix output chunk length truncated to 8 bits [esphome#17480](https://github.com/esphome/esphome/pull/17480) by [@swoboda1337](https://github.com/swoboda1337)
+- [mcp4461] Fix wiper increment/decrement write length [esphome#17487](https://github.com/esphome/esphome/pull/17487) by [@swoboda1337](https://github.com/swoboda1337)
+- Bump aioesphomeapi from 45.5.2 to 45.6.0 [esphome#17490](https://github.com/esphome/esphome/pull/17490) by [@dependabot[bot]](https://github.com/apps/dependabot)
+- [web_server] Serialize entity state strings without a copy buffer [esphome#17488](https://github.com/esphome/esphome/pull/17488) by [@swoboda1337](https://github.com/swoboda1337)
+- Bump bundled esphome-device-builder to 1.4.0 [esphome#17495](https://github.com/esphome/esphome/pull/17495) by [@esphome[bot]](https://github.com/apps/esphome)
+- Bump bundled esphome-device-builder to 1.4.1 [esphome#17507](https://github.com/esphome/esphome/pull/17507) by [@esphome[bot]](https://github.com/apps/esphome)
+- [mipi][mipi_spi][mipi_dsi][mipi_rgb] Transform cleanup [esphome#17405](https://github.com/esphome/esphome/pull/17405) by [@clydebarrow](https://github.com/clydebarrow) (breaking-change)
+- Bump bundled esphome-device-builder to 1.4.2 [esphome#17512](https://github.com/esphome/esphome/pull/17512) by [@esphome[bot]](https://github.com/apps/esphome)
+- [mipi][mipi_spi] SWRESET handling improved [esphome#17504](https://github.com/esphome/esphome/pull/17504) by [@clydebarrow](https://github.com/clydebarrow)
+- [mipi_dsi] New model for M5Stack Tab5 [esphome#17500](https://github.com/esphome/esphome/pull/17500) by [@clydebarrow](https://github.com/clydebarrow) (new-feature)
+- [deep_sleep] feed watchdog in deep sleep [esphome#17516](https://github.com/esphome/esphome/pull/17516) by [@tomaszduda23](https://github.com/tomaszduda23)
+- Bump bundled esphome-device-builder to 1.4.3 [esphome#17522](https://github.com/esphome/esphome/pull/17522) by [@esphome[bot]](https://github.com/apps/esphome)
+- [core] Make config-hash independent of machine-local paths [esphome#17523](https://github.com/esphome/esphome/pull/17523) by [@bdraco](https://github.com/bdraco)
+- [mdns] Fix missing device info TXT records when native API is not enabled [esphome#17520](https://github.com/esphome/esphome/pull/17520) by [@bdraco](https://github.com/bdraco)
+- [web_server] Fix unused function warning for json_state_str [esphome#17524](https://github.com/esphome/esphome/pull/17524) by [@bdraco](https://github.com/bdraco)
+- [zigbee] Fix merge endpoint [esphome#17511](https://github.com/esphome/esphome/pull/17511) by [@luar123](https://github.com/luar123)
+- [zigbee] prevent task watchdog trigger with large configs. [esphome#17506](https://github.com/esphome/esphome/pull/17506) by [@luar123](https://github.com/luar123)
+- [core] Classify entity metadata visibility for the visual editor [esphome#17503](https://github.com/esphome/esphome/pull/17503) by [@jesserockz](https://github.com/jesserockz)
+- [api] Provision encryption keys over an encrypted zero-PSK noise connection [esphome#17482](https://github.com/esphome/esphome/pull/17482) by [@bdraco](https://github.com/bdraco)
+- [zwave_proxy] Fix parser gaps and harden frame and subscription handling [esphome#17461](https://github.com/esphome/esphome/pull/17461) by [@kbx81](https://github.com/kbx81)
+
 ### All changes
 
 <details>
@@ -935,6 +958,25 @@ For detailed migration guides and API documentation, see the
 - [lvgl] Dynamic rotation features [esphome#16773](https://github.com/esphome/esphome/pull/16773) by [@clydebarrow](https://github.com/clydebarrow) (new-feature)
 - [core] Hide build & framework internals from the visual editor [esphome#17449](https://github.com/esphome/esphome/pull/17449) by [@jesserockz](https://github.com/jesserockz)
 - [gsl3670] Add new touchscreen component [esphome#16285](https://github.com/esphome/esphome/pull/16285) by [@clydebarrow](https://github.com/clydebarrow) (new-component) (new-feature) (new-platform)
+- [usb_uart] Fix output chunk length truncated to 8 bits [esphome#17480](https://github.com/esphome/esphome/pull/17480) by [@swoboda1337](https://github.com/swoboda1337)
+- [mcp4461] Fix wiper increment/decrement write length [esphome#17487](https://github.com/esphome/esphome/pull/17487) by [@swoboda1337](https://github.com/swoboda1337)
+- [web_server] Serialize entity state strings without a copy buffer [esphome#17488](https://github.com/esphome/esphome/pull/17488) by [@swoboda1337](https://github.com/swoboda1337)
+- Bump bundled esphome-device-builder to 1.4.0 [esphome#17495](https://github.com/esphome/esphome/pull/17495) by [@esphome[bot]](https://github.com/apps/esphome)
+- Bump bundled esphome-device-builder to 1.4.1 [esphome#17507](https://github.com/esphome/esphome/pull/17507) by [@esphome[bot]](https://github.com/apps/esphome)
+- [mipi][mipi_spi][mipi_dsi][mipi_rgb] Transform cleanup [esphome#17405](https://github.com/esphome/esphome/pull/17405) by [@clydebarrow](https://github.com/clydebarrow) (breaking-change)
+- Bump bundled esphome-device-builder to 1.4.2 [esphome#17512](https://github.com/esphome/esphome/pull/17512) by [@esphome[bot]](https://github.com/apps/esphome)
+- [mipi][mipi_spi] SWRESET handling improved [esphome#17504](https://github.com/esphome/esphome/pull/17504) by [@clydebarrow](https://github.com/clydebarrow)
+- [mipi_dsi] New model for M5Stack Tab5 [esphome#17500](https://github.com/esphome/esphome/pull/17500) by [@clydebarrow](https://github.com/clydebarrow) (new-feature)
+- [deep_sleep] feed watchdog in deep sleep [esphome#17516](https://github.com/esphome/esphome/pull/17516) by [@tomaszduda23](https://github.com/tomaszduda23)
+- Bump bundled esphome-device-builder to 1.4.3 [esphome#17522](https://github.com/esphome/esphome/pull/17522) by [@esphome[bot]](https://github.com/apps/esphome)
+- [core] Make config-hash independent of machine-local paths [esphome#17523](https://github.com/esphome/esphome/pull/17523) by [@bdraco](https://github.com/bdraco)
+- [mdns] Fix missing device info TXT records when native API is not enabled [esphome#17520](https://github.com/esphome/esphome/pull/17520) by [@bdraco](https://github.com/bdraco)
+- [web_server] Fix unused function warning for json_state_str [esphome#17524](https://github.com/esphome/esphome/pull/17524) by [@bdraco](https://github.com/bdraco)
+- [zigbee] Fix merge endpoint [esphome#17511](https://github.com/esphome/esphome/pull/17511) by [@luar123](https://github.com/luar123)
+- [zigbee] prevent task watchdog trigger with large configs. [esphome#17506](https://github.com/esphome/esphome/pull/17506) by [@luar123](https://github.com/luar123)
+- [core] Classify entity metadata visibility for the visual editor [esphome#17503](https://github.com/esphome/esphome/pull/17503) by [@jesserockz](https://github.com/jesserockz)
+- [api] Provision encryption keys over an encrypted zero-PSK noise connection [esphome#17482](https://github.com/esphome/esphome/pull/17482) by [@bdraco](https://github.com/bdraco)
+- [zwave_proxy] Fix parser gaps and harden frame and subscription handling [esphome#17461](https://github.com/esphome/esphome/pull/17461) by [@kbx81](https://github.com/kbx81)
 
 </details>
 
@@ -992,5 +1034,6 @@ For detailed migration guides and API documentation, see the
 - Bump astral-sh/setup-uv from 8.3.1 to 8.3.2 [esphome#17454](https://github.com/esphome/esphome/pull/17454) by [@dependabot[bot]](https://github.com/apps/dependabot)
 - Bump CodSpeedHQ/action from 4.18.2 to 4.18.4 [esphome#17455](https://github.com/esphome/esphome/pull/17455) by [@dependabot[bot]](https://github.com/apps/dependabot)
 - Bump github/codeql-action/analyze from 4.36.3 to 4.37.0 [esphome#17456](https://github.com/esphome/esphome/pull/17456) by [@dependabot[bot]](https://github.com/apps/dependabot)
+- Bump aioesphomeapi from 45.5.2 to 45.6.0 [esphome#17490](https://github.com/esphome/esphome/pull/17490) by [@dependabot[bot]](https://github.com/apps/dependabot)
 
 </details>
