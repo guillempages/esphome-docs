@@ -52,6 +52,8 @@ dashboard is retired in favor of the external Device Builder, and Python 3.11 su
 - If you set `enabled` or `coordinator` under Zigbee `reporting:`, remove those keys
 - If you use `web_server: version: 1`, plan to migrate to v2 or v3 before 2027.1.0
 - If you address `web_server` URLs by object ID, switch to the entity name
+- If a browser page hosted elsewhere calls your `web_server` endpoints, add its origin to `web_server: allowed_origins:`
+- If you relied on `web_server` Private Network Access being on by default, set `enable_private_network_access: true` and add the calling origins to `allowed_origins:`
 - If you use `packages: !include mypackage.yaml`, wrap the include in a list: `packages: [!include mypackage.yaml]`
 - If you use `FOUR_SCAN_16PX_HIGH`, `FOUR_SCAN_32PX_HIGH`, or `FOUR_SCAN_64PX_HIGH` for hub75 `scan_wiring`, rename to `SCAN_1_4_16PX_HIGH`, `SCAN_1_8_32PX_HIGH`, or `SCAN_1_8_64PX_HIGH`
 - If you set `disable_crc` under `modbus:`, remove it
@@ -551,6 +553,12 @@ happening, and suggests `packages:` for a deep merge instead. Toggle with `espho
 - **Web server SSE optimization** ([#17400](https://github.com/esphome/esphome/pull/17400)) — Logger's known
   message length is now threaded through the SSE send path, avoiding `strlen` and `strchr` rescans on every log
   event. No wire changes.
+- **Web server HTTP digest authentication** ([#17541](https://github.com/esphome/esphome/pull/17541)) —
+  [`web_server`](/components/web_server/) `auth:` gains a new `type:` option to select `basic` or `digest`.
+  Digest keeps the password off the network (only hashes are sent) instead of the trivially reversible Base64
+  that Basic uses; both look identical in the browser. The scheme is fixed at build time so the unused code
+  path is compiled out. The default stays `basic` for now to avoid breaking non-browser REST clients and will
+  change to `digest` in 2027.1.0; set `type: basic` explicitly to keep the current behavior after that release.
 - **WiFi roaming scan suppression** ([#17012](https://github.com/esphome/esphome/pull/17012)) — A new internal API
   lets components request that post-connect roaming scans be paused. First user is
   [sendspin](/components/sendspin/), which now suppresses roaming scans while playing to prevent audible hiccups
@@ -679,6 +687,13 @@ tested pre-releases, and helped in the community.
 - **Web Server**: Version 1 is deprecated. A configuration warning is emitted when `version: 1` is set;
   removal is targeted for 2027.1.0. Migrate to v2 (the default) or v3
   [#17109](https://github.com/esphome/esphome/pull/17109)
+- **Web Server**: Cross-origin browser requests carrying an `Origin` header are now rejected unless the origin
+  matches the request `Host` (same-origin) or is listed in the new `allowed_origins:` option. Requests with
+  no `Origin` header (curl, native API, other non-browser clients) are always allowed, so this
+  is defense-in-depth against the browser confused-deputy/CSRF case, not an authentication boundary. Private
+  Network Access is now off by default (previously on) and, when enabled, reuses `allowed_origins:` to
+  authorize preflights; enabling PNA without any allowed origins is rejected at config validation
+  [#17530](https://github.com/esphome/esphome/pull/17530)
 - **Zigbee**: The Zigbee SDK bump to 2.0.2 changes the storage layout, so ESP32 devices must be re-joined and
   reconfigured after upgrading. The `reporting:` config values `enabled` and `coordinator` are no longer valid
   [#16869](https://github.com/esphome/esphome/pull/16869)
