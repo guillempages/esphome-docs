@@ -52,6 +52,8 @@ dashboard is retired in favor of the external Device Builder, and Python 3.11 su
 - If you set `enabled` or `coordinator` under Zigbee `reporting:`, remove those keys
 - If you use `web_server: version: 1`, plan to migrate to v2 or v3 before 2027.1.0
 - If you address `web_server` URLs by object ID, switch to the entity name
+- If a browser page hosted elsewhere calls your `web_server` endpoints, add its origin to `web_server: allowed_origins:`
+- If you relied on `web_server` Private Network Access being on by default, set `enable_private_network_access: true` and add the calling origins to `allowed_origins:`
 - If you use `packages: !include mypackage.yaml`, wrap the include in a list: `packages: [!include mypackage.yaml]`
 - If you use `FOUR_SCAN_16PX_HIGH`, `FOUR_SCAN_32PX_HIGH`, or `FOUR_SCAN_64PX_HIGH` for hub75 `scan_wiring`, rename to `SCAN_1_4_16PX_HIGH`, `SCAN_1_8_32PX_HIGH`, or `SCAN_1_8_64PX_HIGH`
 - If you set `disable_crc` under `modbus:`, remove it
@@ -551,6 +553,12 @@ happening, and suggests `packages:` for a deep merge instead. Toggle with `espho
 - **Web server SSE optimization** ([#17400](https://github.com/esphome/esphome/pull/17400)) — Logger's known
   message length is now threaded through the SSE send path, avoiding `strlen` and `strchr` rescans on every log
   event. No wire changes.
+- **Web server HTTP digest authentication** ([#17541](https://github.com/esphome/esphome/pull/17541)) —
+  [`web_server`](/components/web_server/) `auth:` gains a new `type:` option to select `basic` or `digest`.
+  Digest keeps the password off the network (only hashes are sent) instead of the trivially reversible Base64
+  that Basic uses; both look identical in the browser. The scheme is fixed at build time so the unused code
+  path is compiled out. The default stays `basic` for now to avoid breaking non-browser REST clients and will
+  change to `digest` in 2027.1.0; set `type: basic` explicitly to keep the current behavior after that release.
 - **WiFi roaming scan suppression** ([#17012](https://github.com/esphome/esphome/pull/17012)) — A new internal API
   lets components request that post-connect roaming scans be paused. First user is
   [sendspin](/components/sendspin/), which now suppresses roaming scans while playing to prevent audible hiccups
@@ -679,6 +687,13 @@ tested pre-releases, and helped in the community.
 - **Web Server**: Version 1 is deprecated. A configuration warning is emitted when `version: 1` is set;
   removal is targeted for 2027.1.0. Migrate to v2 (the default) or v3
   [#17109](https://github.com/esphome/esphome/pull/17109)
+- **Web Server**: Cross-origin browser requests carrying an `Origin` header are now rejected unless the origin
+  matches the request `Host` (same-origin) or is listed in the new `allowed_origins:` option. Requests with
+  no `Origin` header (curl, native API, other non-browser clients) are always allowed, so this
+  is defense-in-depth against the browser confused-deputy/CSRF case, not an authentication boundary. Private
+  Network Access is now off by default (previously on) and, when enabled, reuses `allowed_origins:` to
+  authorize preflights; enabling PNA without any allowed origins is rejected at config validation
+  [#17530](https://github.com/esphome/esphome/pull/17530)
 - **Zigbee**: The Zigbee SDK bump to 2.0.2 changes the storage layout, so ESP32 devices must be re-joined and
   reconfigured after upgrading. The `reporting:` config values `enabled` and `coordinator` are no longer valid
   [#16869](https://github.com/esphome/esphome/pull/16869)
@@ -833,6 +848,8 @@ For detailed migration guides and API documentation, see the
 - [image] Restructure into a platform component [esphome#17416](https://github.com/esphome/esphome/pull/17416) by [@jesserockz](https://github.com/jesserockz) (new-component) (new-feature)
 - [lvgl] Dynamic rotation features [esphome#16773](https://github.com/esphome/esphome/pull/16773) by [@clydebarrow](https://github.com/clydebarrow) (new-feature)
 - [gsl3670] Add new touchscreen component [esphome#16285](https://github.com/esphome/esphome/pull/16285) by [@clydebarrow](https://github.com/clydebarrow) (new-component) (new-feature) (new-platform)
+- [mipi_dsi] New model for M5Stack Tab5 [esphome#17500](https://github.com/esphome/esphome/pull/17500) by [@clydebarrow](https://github.com/clydebarrow) (new-feature)
+- [web_server] Add HTTP digest authentication with selectable scheme [esphome#17541](https://github.com/esphome/esphome/pull/17541) by [@jesserockz](https://github.com/jesserockz) (new-feature)
 
 ### New Components
 
@@ -878,44 +895,8 @@ For detailed migration guides and API documentation, see the
 - [nrf52] allow to build for non nrf52840 boards [esphome#17373](https://github.com/esphome/esphome/pull/17373) by [@tomaszduda23](https://github.com/tomaszduda23) (breaking-change)
 - [light] Preserve brightness on turn-off. [esphome#17103](https://github.com/esphome/esphome/pull/17103) by [@clydebarrow](https://github.com/clydebarrow) (breaking-change)
 - [zigbee] Allow to combine and merge endpoints on esp32 [esphome#17402](https://github.com/esphome/esphome/pull/17402) by [@luar123](https://github.com/luar123) (new-feature) (breaking-change)
-
-### Beta Changes
-
-- [usb_uart] Fix output chunk length truncated to 8 bits [esphome#17480](https://github.com/esphome/esphome/pull/17480) by [@swoboda1337](https://github.com/swoboda1337)
-- [mcp4461] Fix wiper increment/decrement write length [esphome#17487](https://github.com/esphome/esphome/pull/17487) by [@swoboda1337](https://github.com/swoboda1337)
-- Bump aioesphomeapi from 45.5.2 to 45.6.0 [esphome#17490](https://github.com/esphome/esphome/pull/17490) by [@dependabot[bot]](https://github.com/apps/dependabot)
-- [web_server] Serialize entity state strings without a copy buffer [esphome#17488](https://github.com/esphome/esphome/pull/17488) by [@swoboda1337](https://github.com/swoboda1337)
-- Bump bundled esphome-device-builder to 1.4.0 [esphome#17495](https://github.com/esphome/esphome/pull/17495) by [@esphome[bot]](https://github.com/apps/esphome)
-- Bump bundled esphome-device-builder to 1.4.1 [esphome#17507](https://github.com/esphome/esphome/pull/17507) by [@esphome[bot]](https://github.com/apps/esphome)
 - [mipi][mipi_spi][mipi_dsi][mipi_rgb] Transform cleanup [esphome#17405](https://github.com/esphome/esphome/pull/17405) by [@clydebarrow](https://github.com/clydebarrow) (breaking-change)
-- Bump bundled esphome-device-builder to 1.4.2 [esphome#17512](https://github.com/esphome/esphome/pull/17512) by [@esphome[bot]](https://github.com/apps/esphome)
-- [mipi][mipi_spi] SWRESET handling improved [esphome#17504](https://github.com/esphome/esphome/pull/17504) by [@clydebarrow](https://github.com/clydebarrow)
-- [mipi_dsi] New model for M5Stack Tab5 [esphome#17500](https://github.com/esphome/esphome/pull/17500) by [@clydebarrow](https://github.com/clydebarrow) (new-feature)
-- [deep_sleep] feed watchdog in deep sleep [esphome#17516](https://github.com/esphome/esphome/pull/17516) by [@tomaszduda23](https://github.com/tomaszduda23)
-- Bump bundled esphome-device-builder to 1.4.3 [esphome#17522](https://github.com/esphome/esphome/pull/17522) by [@esphome[bot]](https://github.com/apps/esphome)
-- [core] Make config-hash independent of machine-local paths [esphome#17523](https://github.com/esphome/esphome/pull/17523) by [@bdraco](https://github.com/bdraco)
-- [mdns] Fix missing device info TXT records when native API is not enabled [esphome#17520](https://github.com/esphome/esphome/pull/17520) by [@bdraco](https://github.com/bdraco)
-- [web_server] Fix unused function warning for json_state_str [esphome#17524](https://github.com/esphome/esphome/pull/17524) by [@bdraco](https://github.com/bdraco)
-- [zigbee] Fix merge endpoint [esphome#17511](https://github.com/esphome/esphome/pull/17511) by [@luar123](https://github.com/luar123)
-- [zigbee] prevent task watchdog trigger with large configs. [esphome#17506](https://github.com/esphome/esphome/pull/17506) by [@luar123](https://github.com/luar123)
-- [core] Classify entity metadata visibility for the visual editor [esphome#17503](https://github.com/esphome/esphome/pull/17503) by [@jesserockz](https://github.com/jesserockz)
-- [api] Provision encryption keys over an encrypted zero-PSK noise connection [esphome#17482](https://github.com/esphome/esphome/pull/17482) by [@bdraco](https://github.com/bdraco)
-- [zwave_proxy] Fix parser gaps and harden frame and subscription handling [esphome#17461](https://github.com/esphome/esphome/pull/17461) by [@kbx81](https://github.com/kbx81)
-- [gsl3670] Fix i2c package variant in esp32-s3-idf test [esphome#17535](https://github.com/esphome/esphome/pull/17535) by [@jesserockz](https://github.com/jesserockz)
 - [web_server] Add CORS origin checking with allowed_origins [esphome#17530](https://github.com/esphome/esphome/pull/17530) by [@jesserockz](https://github.com/jesserockz) (breaking-change)
-- [esp32] Do not require verification_key with Secure Boot V2 signing schemes [esphome#17497](https://github.com/esphome/esphome/pull/17497) by [@kbx81](https://github.com/kbx81)
-- [web_server] Use dict-style packages in tests so they can be batch-grouped [esphome#17544](https://github.com/esphome/esphome/pull/17544) by [@jesserockz](https://github.com/jesserockz)
-- [web_server] Add HTTP digest authentication with selectable scheme [esphome#17541](https://github.com/esphome/esphome/pull/17541) by [@jesserockz](https://github.com/jesserockz) (new-feature)
-- [libretiny] Keep renamed board generic-ln882hki validating against generic-ln882h [esphome#17542](https://github.com/esphome/esphome/pull/17542) by [@bdraco](https://github.com/bdraco)
-- [veml7700][as7341][ltr501] Fix device class on raw-count sensors [esphome#17549](https://github.com/esphome/esphome/pull/17549) by [@swoboda1337](https://github.com/swoboda1337)
-- [nextion] Fix unbounded queue growth and OOM crash when display sends no data [esphome#17553](https://github.com/esphome/esphome/pull/17553) by [@kbx81](https://github.com/kbx81)
-- [mcp23017] reset IPOL registers to 0x00 on setup [esphome#17177](https://github.com/esphome/esphome/pull/17177) by [@Rocco83](https://github.com/Rocco83)
-- [atc_mithermometer] Make duplicate-packet counter per-instance [esphome#17496](https://github.com/esphome/esphome/pull/17496) by [@swoboda1337](https://github.com/swoboda1337)
-- [zigbee] bump esp-zigbee-sdk to 2.0.3 [esphome#17564](https://github.com/esphome/esphome/pull/17564) by [@luar123](https://github.com/luar123)
-- Bump bundled esphome-device-builder to 1.6.0 [esphome#17573](https://github.com/esphome/esphome/pull/17573) by [@esphome[bot]](https://github.com/apps/esphome)
-- [api] Warn when Home Assistant actions are sent with no subscribed client [esphome#17560](https://github.com/esphome/esphome/pull/17560) by [@jesserockz](https://github.com/jesserockz)
-- Bump bundled esphome-device-builder to 1.6.1 [esphome#17575](https://github.com/esphome/esphome/pull/17575) by [@esphome[bot]](https://github.com/apps/esphome)
-- [core] Fix wait_until crash when re-entered from its own continuation [esphome#17571](https://github.com/esphome/esphome/pull/17571) by [@jesserockz](https://github.com/jesserockz)
 
 ### All changes
 
@@ -1132,6 +1113,7 @@ For detailed migration guides and API documentation, see the
 - [lvgl] Dynamic rotation features [esphome#16773](https://github.com/esphome/esphome/pull/16773) by [@clydebarrow](https://github.com/clydebarrow) (new-feature)
 - [core] Hide build & framework internals from the visual editor [esphome#17449](https://github.com/esphome/esphome/pull/17449) by [@jesserockz](https://github.com/jesserockz)
 - [gsl3670] Add new touchscreen component [esphome#16285](https://github.com/esphome/esphome/pull/16285) by [@clydebarrow](https://github.com/clydebarrow) (new-component) (new-feature) (new-platform)
+- [gsl3670] Reference the test display explicitly so grouped CI builds validate [esphome#17462](https://github.com/esphome/esphome/pull/17462) by [@swoboda1337](https://github.com/swoboda1337)
 - [usb_uart] Fix output chunk length truncated to 8 bits [esphome#17480](https://github.com/esphome/esphome/pull/17480) by [@swoboda1337](https://github.com/swoboda1337)
 - [mcp4461] Fix wiper increment/decrement write length [esphome#17487](https://github.com/esphome/esphome/pull/17487) by [@swoboda1337](https://github.com/swoboda1337)
 - [web_server] Serialize entity state strings without a copy buffer [esphome#17488](https://github.com/esphome/esphome/pull/17488) by [@swoboda1337](https://github.com/swoboda1337)
@@ -1151,7 +1133,18 @@ For detailed migration guides and API documentation, see the
 - [core] Classify entity metadata visibility for the visual editor [esphome#17503](https://github.com/esphome/esphome/pull/17503) by [@jesserockz](https://github.com/jesserockz)
 - [api] Provision encryption keys over an encrypted zero-PSK noise connection [esphome#17482](https://github.com/esphome/esphome/pull/17482) by [@bdraco](https://github.com/bdraco)
 - [zwave_proxy] Fix parser gaps and harden frame and subscription handling [esphome#17461](https://github.com/esphome/esphome/pull/17461) by [@kbx81](https://github.com/kbx81)
+- [mipi_rgb] Test in isolation to avoid bus/pin merge conflicts [esphome#17534](https://github.com/esphome/esphome/pull/17534) by [@swoboda1337](https://github.com/swoboda1337)
+- [gsl3670] Fix i2c package variant in esp32-s3-idf test [esphome#17535](https://github.com/esphome/esphome/pull/17535) by [@jesserockz](https://github.com/jesserockz)
+- [web_server] Add CORS origin checking with allowed_origins [esphome#17530](https://github.com/esphome/esphome/pull/17530) by [@jesserockz](https://github.com/jesserockz) (breaking-change)
+- [esp32] Do not require verification_key with Secure Boot V2 signing schemes [esphome#17497](https://github.com/esphome/esphome/pull/17497) by [@kbx81](https://github.com/kbx81)
+- [web_server] Use dict-style packages in tests so they can be batch-grouped [esphome#17544](https://github.com/esphome/esphome/pull/17544) by [@jesserockz](https://github.com/jesserockz)
+- [web_server] Add HTTP digest authentication with selectable scheme [esphome#17541](https://github.com/esphome/esphome/pull/17541) by [@jesserockz](https://github.com/jesserockz) (new-feature)
+- [libretiny] Keep renamed board generic-ln882hki validating against generic-ln882h [esphome#17542](https://github.com/esphome/esphome/pull/17542) by [@bdraco](https://github.com/bdraco)
+- [veml7700][as7341][ltr501] Fix device class on raw-count sensors [esphome#17549](https://github.com/esphome/esphome/pull/17549) by [@swoboda1337](https://github.com/swoboda1337)
+- [nextion] Fix unbounded queue growth and OOM crash when display sends no data [esphome#17553](https://github.com/esphome/esphome/pull/17553) by [@kbx81](https://github.com/kbx81)
+- [script] Recursively expand nested packages when merging component tests [esphome#17557](https://github.com/esphome/esphome/pull/17557) by [@jesserockz](https://github.com/jesserockz)
 - [mcp23017] reset IPOL registers to 0x00 on setup [esphome#17177](https://github.com/esphome/esphome/pull/17177) by [@Rocco83](https://github.com/Rocco83)
+- Bump bundled esphome-device-builder to 1.5.0 [esphome#17558](https://github.com/esphome/esphome/pull/17558) by [@esphome[bot]](https://github.com/apps/esphome)
 - [atc_mithermometer] Make duplicate-packet counter per-instance [esphome#17496](https://github.com/esphome/esphome/pull/17496) by [@swoboda1337](https://github.com/swoboda1337)
 - [zigbee] bump esp-zigbee-sdk to 2.0.3 [esphome#17564](https://github.com/esphome/esphome/pull/17564) by [@luar123](https://github.com/luar123)
 - Bump bundled esphome-device-builder to 1.6.0 [esphome#17573](https://github.com/esphome/esphome/pull/17573) by [@esphome[bot]](https://github.com/apps/esphome)
