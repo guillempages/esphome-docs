@@ -557,6 +557,20 @@ esp32:
     >       # Verify OTA updates against externally-applied rsa3072 signatures
     >       signed_ota_verification:
     > ```
+    >
+    > For `rsa3072` you can instead list the trusted keys explicitly with `verification_keys` (below) to enable
+    > key rotation and backup keys.
+
+  - **verification_keys** (*Optional*, list): For externally-signed `rsa3072`, the public keys your device trusts
+    when checking OTA updates. Listing more than one lets you rotate signing keys or keep a backup key — an update
+    signed by any listed key is accepted. Each entry is a public key file, or the key's digest (handy for CI,
+    where you may not want a key file in your configuration). Up to three keys.
+    **Requires `signing_scheme: rsa3072` and no `signing_key`.**
+
+    > [!NOTE]
+    > Both app and bootloader OTA updates are verified. If you update the bootloader over the air (with
+    > `allow_partition_access`), sign it with one of your trusted keys first — the normal build signs only the
+    > app, so an unsigned bootloader update is rejected.
 
   - **signing_scheme** (*Optional*, string): The signing algorithm. One of `rsa3072`, `ecdsa256`, or `ecdsa_v1`.
     Defaults to `rsa3072`. **Not all schemes are supported on all variants** — see the table below.
