@@ -606,6 +606,15 @@ For detailed migration guides and API documentation, see the
 - [modbus_client] Add read/write multiple registers (FC 0x17) [esphome#18215](https://github.com/esphome/esphome/pull/18215) by [@exciton](https://github.com/exciton) (new-feature) (breaking-change)
 
 {/* BETA_CHANGES_START */}
+### Beta Changes
+
+- [usb_uart] Fix uint32_t format specifier warning in pl2303 [esphome#18310](https://github.com/esphome/esphome/pull/18310) by [@bdraco](https://github.com/bdraco)
+- Bump aioesphomeapi from 45.10.0 to 45.10.1 [esphome#18318](https://github.com/esphome/esphome/pull/18318) by [@esphome[bot]](https://github.com/apps/esphome)
+- [sendspin] Bump sendspin-cpp to v0.7.2 [esphome#18316](https://github.com/esphome/esphome/pull/18316) by [@kahrendt](https://github.com/kahrendt)
+- Bump bundled esphome-device-builder to 1.9.6 [esphome#18328](https://github.com/esphome/esphome/pull/18328) by [@esphome[bot]](https://github.com/apps/esphome)
+- [ld2420] Fix out-of-bounds read when device reports unknown command error [esphome#18322](https://github.com/esphome/esphome/pull/18322) by [@bdraco](https://github.com/bdraco)
+- [core] Don't block logs startup on MQTT IP discovery when addresses are known [esphome#18313](https://github.com/esphome/esphome/pull/18313) by [@bdraco](https://github.com/bdraco)
+- [core] Retry framework downloads on transient network errors [esphome#18330](https://github.com/esphome/esphome/pull/18330) by [@bdraco](https://github.com/bdraco)
 {/* BETA_CHANGES_END */}
 
 ### All changes
@@ -959,6 +968,13 @@ For detailed migration guides and API documentation, see the
 - [core] Batch remote file downloads during config validation [esphome#18069](https://github.com/esphome/esphome/pull/18069) by [@bdraco](https://github.com/bdraco)
 - [internal_temperature] Read the RP2 on-die sensor directly instead of via the Arduino API [esphome#18262](https://github.com/esphome/esphome/pull/18262) by [@jesserockz](https://github.com/jesserockz)
 - [core] Add esphome logs over web_server HTTP SSE [esphome#17110](https://github.com/esphome/esphome/pull/17110) by [@bdraco](https://github.com/bdraco) (new-feature)
+- [usb_uart] Fix uint32_t format specifier warning in pl2303 [esphome#18310](https://github.com/esphome/esphome/pull/18310) by [@bdraco](https://github.com/bdraco)
+- Bump aioesphomeapi from 45.10.0 to 45.10.1 [esphome#18318](https://github.com/esphome/esphome/pull/18318) by [@esphome[bot]](https://github.com/apps/esphome)
+- [sendspin] Bump sendspin-cpp to v0.7.2 [esphome#18316](https://github.com/esphome/esphome/pull/18316) by [@kahrendt](https://github.com/kahrendt)
+- Bump bundled esphome-device-builder to 1.9.6 [esphome#18328](https://github.com/esphome/esphome/pull/18328) by [@esphome[bot]](https://github.com/apps/esphome)
+- [ld2420] Fix out-of-bounds read when device reports unknown command error [esphome#18322](https://github.com/esphome/esphome/pull/18322) by [@bdraco](https://github.com/bdraco)
+- [core] Don't block logs startup on MQTT IP discovery when addresses are known [esphome#18313](https://github.com/esphome/esphome/pull/18313) by [@bdraco](https://github.com/bdraco)
+- [core] Retry framework downloads on transient network errors [esphome#18330](https://github.com/esphome/esphome/pull/18330) by [@bdraco](https://github.com/bdraco)
 {/* ALL_CHANGES_END */}
 
 </details>
