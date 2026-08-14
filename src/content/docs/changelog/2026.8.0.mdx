@@ -615,6 +615,15 @@ For detailed migration guides and API documentation, see the
 - [ld2420] Fix out-of-bounds read when device reports unknown command error [esphome#18322](https://github.com/esphome/esphome/pull/18322) by [@bdraco](https://github.com/bdraco)
 - [core] Don't block logs startup on MQTT IP discovery when addresses are known [esphome#18313](https://github.com/esphome/esphome/pull/18313) by [@bdraco](https://github.com/bdraco)
 - [core] Retry framework downloads on transient network errors [esphome#18330](https://github.com/esphome/esphome/pull/18330) by [@bdraco](https://github.com/bdraco)
+- [web_server_base] Stop deleting the web server on captive portal teardown [esphome#18324](https://github.com/esphome/esphome/pull/18324) by [@bdraco](https://github.com/bdraco)
+- [esp32_ble_tracker] Fix missed BLE advertisements with WiFi on ESP-IDF 5.5.5 [esphome#18356](https://github.com/esphome/esphome/pull/18356) by [@bdraco](https://github.com/bdraco)
+- [esp32_ble] Silence spurious warnings for local key GAP events [esphome#18359](https://github.com/esphome/esphome/pull/18359) by [@bdraco](https://github.com/bdraco)
+- [wifi] Fix ESP8266 crash in cnx_node_search when lwIP transmits after disconnect [esphome#18333](https://github.com/esphome/esphome/pull/18333) by [@bdraco](https://github.com/bdraco)
+- [ota] Retry uploads that fail from network errors [esphome#18332](https://github.com/esphome/esphome/pull/18332) by [@bdraco](https://github.com/bdraco)
+- [core] Load component aliases from a generated registry [esphome#18335](https://github.com/esphome/esphome/pull/18335) by [@bdraco](https://github.com/bdraco)
+- [core] Partially revert "Hash entity keys from the raw name to fix collisions" [esphome#18361](https://github.com/esphome/esphome/pull/18361) by [@bdraco](https://github.com/bdraco)
+- [core] Restore cv.parse_esphome_version as a deprecated helper [esphome#18366](https://github.com/esphome/esphome/pull/18366) by [@bdraco](https://github.com/bdraco)
+- [core] fix PYTHONPATH leak [esphome#18360](https://github.com/esphome/esphome/pull/18360) by [@karlbeecken](https://github.com/karlbeecken)
 {/* BETA_CHANGES_END */}
 
 ### All changes
@@ -975,6 +984,15 @@ For detailed migration guides and API documentation, see the
 - [ld2420] Fix out-of-bounds read when device reports unknown command error [esphome#18322](https://github.com/esphome/esphome/pull/18322) by [@bdraco](https://github.com/bdraco)
 - [core] Don't block logs startup on MQTT IP discovery when addresses are known [esphome#18313](https://github.com/esphome/esphome/pull/18313) by [@bdraco](https://github.com/bdraco)
 - [core] Retry framework downloads on transient network errors [esphome#18330](https://github.com/esphome/esphome/pull/18330) by [@bdraco](https://github.com/bdraco)
+- [web_server_base] Stop deleting the web server on captive portal teardown [esphome#18324](https://github.com/esphome/esphome/pull/18324) by [@bdraco](https://github.com/bdraco)
+- [esp32_ble_tracker] Fix missed BLE advertisements with WiFi on ESP-IDF 5.5.5 [esphome#18356](https://github.com/esphome/esphome/pull/18356) by [@bdraco](https://github.com/bdraco)
+- [esp32_ble] Silence spurious warnings for local key GAP events [esphome#18359](https://github.com/esphome/esphome/pull/18359) by [@bdraco](https://github.com/bdraco)
+- [wifi] Fix ESP8266 crash in cnx_node_search when lwIP transmits after disconnect [esphome#18333](https://github.com/esphome/esphome/pull/18333) by [@bdraco](https://github.com/bdraco)
+- [ota] Retry uploads that fail from network errors [esphome#18332](https://github.com/esphome/esphome/pull/18332) by [@bdraco](https://github.com/bdraco)
+- [core] Load component aliases from a generated registry [esphome#18335](https://github.com/esphome/esphome/pull/18335) by [@bdraco](https://github.com/bdraco)
+- [core] Partially revert "Hash entity keys from the raw name to fix collisions" [esphome#18361](https://github.com/esphome/esphome/pull/18361) by [@bdraco](https://github.com/bdraco)
+- [core] Restore cv.parse_esphome_version as a deprecated helper [esphome#18366](https://github.com/esphome/esphome/pull/18366) by [@bdraco](https://github.com/bdraco)
+- [core] fix PYTHONPATH leak [esphome#18360](https://github.com/esphome/esphome/pull/18360) by [@karlbeecken](https://github.com/karlbeecken)
 {/* ALL_CHANGES_END */}
 
 </details>
