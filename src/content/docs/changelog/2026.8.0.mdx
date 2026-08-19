@@ -5,9 +5,6 @@ pagefind: false
 slug: "changelog/2026.8.0"
 ---
 
-> [!NOTE]
-> This is a beta release. Details on this page may change before the stable release is published.
-
 import ImgTable from "@components/ImgTable.astro";
 
 {/* MANUAL: Add featured components here */}
@@ -882,60 +879,6 @@ For detailed migration guides and API documentation, see the
 - [ble_device_base] Migrate BLE sensor platforms to the neutral layer (batch 13: xiaomi_rtcgq02lm, xiaomi_wx08zm, xiaomi_xmwsdj04mmc) [esphome#18183](https://github.com/esphome/esphome/pull/18183) by [@Bl00d-B0b](https://github.com/Bl00d-B0b) (new-feature) (breaking-change)
 - [modbus_client] Add read/write multiple registers (FC 0x17) [esphome#18215](https://github.com/esphome/esphome/pull/18215) by [@exciton](https://github.com/exciton) (new-feature) (breaking-change)
 
-{/* BETA_CHANGES_START */}
-### Beta Changes
-
-- [usb_uart] Fix uint32_t format specifier warning in pl2303 [esphome#18310](https://github.com/esphome/esphome/pull/18310) by [@bdraco](https://github.com/bdraco)
-- Bump aioesphomeapi from 45.10.0 to 45.10.1 [esphome#18318](https://github.com/esphome/esphome/pull/18318) by [@esphome[bot]](https://github.com/apps/esphome)
-- [sendspin] Bump sendspin-cpp to v0.7.2 [esphome#18316](https://github.com/esphome/esphome/pull/18316) by [@kahrendt](https://github.com/kahrendt)
-- Bump bundled esphome-device-builder to 1.9.6 [esphome#18328](https://github.com/esphome/esphome/pull/18328) by [@esphome[bot]](https://github.com/apps/esphome)
-- [ld2420] Fix out-of-bounds read when device reports unknown command error [esphome#18322](https://github.com/esphome/esphome/pull/18322) by [@bdraco](https://github.com/bdraco)
-- [core] Don't block logs startup on MQTT IP discovery when addresses are known [esphome#18313](https://github.com/esphome/esphome/pull/18313) by [@bdraco](https://github.com/bdraco)
-- [core] Retry framework downloads on transient network errors [esphome#18330](https://github.com/esphome/esphome/pull/18330) by [@bdraco](https://github.com/bdraco)
-- [web_server_base] Stop deleting the web server on captive portal teardown [esphome#18324](https://github.com/esphome/esphome/pull/18324) by [@bdraco](https://github.com/bdraco)
-- [esp32_ble_tracker] Fix missed BLE advertisements with WiFi on ESP-IDF 5.5.5 [esphome#18356](https://github.com/esphome/esphome/pull/18356) by [@bdraco](https://github.com/bdraco)
-- [esp32_ble] Silence spurious warnings for local key GAP events [esphome#18359](https://github.com/esphome/esphome/pull/18359) by [@bdraco](https://github.com/bdraco)
-- [wifi] Fix ESP8266 crash in cnx_node_search when lwIP transmits after disconnect [esphome#18333](https://github.com/esphome/esphome/pull/18333) by [@bdraco](https://github.com/bdraco)
-- [ota] Retry uploads that fail from network errors [esphome#18332](https://github.com/esphome/esphome/pull/18332) by [@bdraco](https://github.com/bdraco)
-- [core] Load component aliases from a generated registry [esphome#18335](https://github.com/esphome/esphome/pull/18335) by [@bdraco](https://github.com/bdraco)
-- [core] Partially revert "Hash entity keys from the raw name to fix collisions" [esphome#18361](https://github.com/esphome/esphome/pull/18361) by [@bdraco](https://github.com/bdraco)
-- [core] Restore cv.parse_esphome_version as a deprecated helper [esphome#18366](https://github.com/esphome/esphome/pull/18366) by [@bdraco](https://github.com/bdraco)
-- [core] fix PYTHONPATH leak [esphome#18360](https://github.com/esphome/esphome/pull/18360) by [@karlbeecken](https://github.com/karlbeecken)
-- Bump bundled esphome-device-builder to 1.10.0 [esphome#18389](https://github.com/esphome/esphome/pull/18389) by [@esphome[bot]](https://github.com/apps/esphome)
-- [rotary_encoder] account for min value when resetting [esphome#18197](https://github.com/esphome/esphome/pull/18197) by [@ssieb](https://github.com/ssieb)
-- Bump bundled esphome-device-builder to 1.11.0 [esphome#18403](https://github.com/esphome/esphome/pull/18403) by [@esphome[bot]](https://github.com/apps/esphome)
-- [platformio] Skip ccache when the binary on PATH fails to run [esphome#18407](https://github.com/esphome/esphome/pull/18407) by [@bdraco](https://github.com/bdraco)
-- [sensor] Pass NaN through the delta filter again [esphome#18400](https://github.com/esphome/esphome/pull/18400) by [@swoboda1337](https://github.com/swoboda1337)
-- [zigbee] bump esp-zigbee-sdk to 2.0.4 [esphome#18415](https://github.com/esphome/esphome/pull/18415) by [@luar123](https://github.com/luar123)
-- [bk72xx_ble] Fail early with a clear error on non BLE 5.x SoCs [esphome#18406](https://github.com/esphome/esphome/pull/18406) by [@bdraco](https://github.com/bdraco)
-- [core] Skip redundant ESP8266 main loop wake posts from ISR context [esphome#18416](https://github.com/esphome/esphome/pull/18416) by [@bdraco](https://github.com/bdraco)
-- [esp32] Split crash handler addr2line hint per core [esphome#18418](https://github.com/esphome/esphome/pull/18418) by [@bdraco](https://github.com/bdraco)
-- Bump aioesphomeapi from 45.10.1 to 45.10.2 [esphome#18357](https://github.com/esphome/esphome/pull/18357) by [@esphome[bot]](https://github.com/apps/esphome)
-- [ld2420] Drop the setup priority override so setup runs after the UART bus [esphome#18428](https://github.com/esphome/esphome/pull/18428) by [@bdraco](https://github.com/bdraco)
-- Bump aioesphomeapi from 45.10.2 to 45.10.3 [esphome#18433](https://github.com/esphome/esphome/pull/18433) by [@esphome[bot]](https://github.com/apps/esphome)
-- [api] Bump noise-c to 0.1.18 [esphome#18451](https://github.com/esphome/esphome/pull/18451) by [@bdraco](https://github.com/bdraco)
-- Bump bundled esphome-device-builder to 1.11.1 [esphome#18475](https://github.com/esphome/esphome/pull/18475) by [@esphome[bot]](https://github.com/apps/esphome)
-- [api] Bump noise-c to 0.1.19 [esphome#18473](https://github.com/esphome/esphome/pull/18473) by [@bdraco](https://github.com/bdraco)
-- Bump bundled esphome-device-builder to 1.11.2 [esphome#18477](https://github.com/esphome/esphome/pull/18477) by [@esphome[bot]](https://github.com/apps/esphome)
-- [socket] Fix multi-second TCP stalls on ESP8266 by yielding to the SYS context [esphome#18455](https://github.com/esphome/esphome/pull/18455) by [@bdraco](https://github.com/bdraco)
-- [light] Replace rgb_order/is_rgbw/is_wrgb with channel_colors [esphome#18474](https://github.com/esphome/esphome/pull/18474) by [@jesserockz](https://github.com/jesserockz) (new-feature)
-- [gpio_expander][pcf8574][pca9554][tca9555][pca6416a][pi4ioe5v6408][mcp23016][mcp23xxx_base] Reject unsupported interrupt_pin options (inverted, allow_other_uses) [esphome#18472](https://github.com/esphome/esphome/pull/18472) by [@bdraco](https://github.com/bdraco)
-- [api] Bump noise-c to 0.1.20 [esphome#18482](https://github.com/esphome/esphome/pull/18482) by [@bdraco](https://github.com/bdraco)
-- [ci] Fail the benchmark job when the C++ benchmark build fails [esphome#18480](https://github.com/esphome/esphome/pull/18480) by [@bdraco](https://github.com/bdraco)
-- [api] Bump noise-c to 0.1.21 [esphome#18484](https://github.com/esphome/esphome/pull/18484) by [@bdraco](https://github.com/bdraco)
-- [modbus] CRC scan all unknown function codes [esphome#18483](https://github.com/esphome/esphome/pull/18483) by [@exciton](https://github.com/exciton)
-- [platformio] Give the ccache wrapper a cmd.exe safe path [esphome#18495](https://github.com/esphome/esphome/pull/18495) by [@bdraco](https://github.com/bdraco)
-- [vscode] Report the origin of an unexpected exception during validation [esphome#18494](https://github.com/esphome/esphome/pull/18494) by [@bdraco](https://github.com/bdraco)
-- [esp32] Fix ESP32-P4 bootloop on rev3 (v3.x) chips when only variant is set [esphome#18500](https://github.com/esphome/esphome/pull/18500) by [@swoboda1337](https://github.com/swoboda1337)
-- [ci] Stop persisting the integration test ccache [esphome#18504](https://github.com/esphome/esphome/pull/18504) by [@swoboda1337](https://github.com/swoboda1337)
-- Bump bundled esphome-device-builder to 1.11.3 [esphome#18505](https://github.com/esphome/esphome/pull/18505) by [@esphome[bot]](https://github.com/apps/esphome)
-- Bump bundled esphome-device-builder to 1.11.4 [esphome#18506](https://github.com/esphome/esphome/pull/18506) by [@esphome[bot]](https://github.com/apps/esphome)
-- Bump bundled esphome-device-builder to 1.11.5 [esphome#18507](https://github.com/esphome/esphome/pull/18507) by [@esphome[bot]](https://github.com/apps/esphome)
-- Bump bundled esphome-device-builder to 1.12.0 [esphome#18514](https://github.com/esphome/esphome/pull/18514) by [@esphome[bot]](https://github.com/apps/esphome)
-- [image] Restore defaults:/files: support for platform entries [esphome#18032](https://github.com/esphome/esphome/pull/18032) by [@clydebarrow](https://github.com/clydebarrow) (new-feature)
-- [ci] Stop jobs hanging on apt by restoring the cached apt action and bounding raw apt calls [esphome#18518](https://github.com/esphome/esphome/pull/18518) by [@bdraco](https://github.com/bdraco)
-{/* BETA_CHANGES_END */}
-
 ### All changes
 
 <details>
@@ -1336,6 +1279,8 @@ For detailed migration guides and API documentation, see the
 - Bump bundled esphome-device-builder to 1.12.0 [esphome#18514](https://github.com/esphome/esphome/pull/18514) by [@esphome[bot]](https://github.com/apps/esphome)
 - [image] Restore defaults:/files: support for platform entries [esphome#18032](https://github.com/esphome/esphome/pull/18032) by [@clydebarrow](https://github.com/clydebarrow) (new-feature)
 - [ci] Stop jobs hanging on apt by restoring the cached apt action and bounding raw apt calls [esphome#18518](https://github.com/esphome/esphome/pull/18518) by [@bdraco](https://github.com/bdraco)
+- [ci] Key PlatformIO cache on the Python version so a runner image bump does not serve a broken LibreTiny venv [esphome#18512](https://github.com/esphome/esphome/pull/18512) by [@bdraco](https://github.com/bdraco)
+- [tests] Keep PlatformIO libdeps per xdist worker to stop a compile race [esphome#18524](https://github.com/esphome/esphome/pull/18524) by [@bdraco](https://github.com/bdraco)
 {/* ALL_CHANGES_END */}
 
 </details>
