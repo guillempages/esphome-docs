@@ -920,6 +920,20 @@ For detailed migration guides and API documentation, see the
 - [socket] Fix multi-second TCP stalls on ESP8266 by yielding to the SYS context [esphome#18455](https://github.com/esphome/esphome/pull/18455) by [@bdraco](https://github.com/bdraco)
 - [light] Replace rgb_order/is_rgbw/is_wrgb with channel_colors [esphome#18474](https://github.com/esphome/esphome/pull/18474) by [@jesserockz](https://github.com/jesserockz) (new-feature)
 - [gpio_expander][pcf8574][pca9554][tca9555][pca6416a][pi4ioe5v6408][mcp23016][mcp23xxx_base] Reject unsupported interrupt_pin options (inverted, allow_other_uses) [esphome#18472](https://github.com/esphome/esphome/pull/18472) by [@bdraco](https://github.com/bdraco)
+- [api] Bump noise-c to 0.1.20 [esphome#18482](https://github.com/esphome/esphome/pull/18482) by [@bdraco](https://github.com/bdraco)
+- [ci] Fail the benchmark job when the C++ benchmark build fails [esphome#18480](https://github.com/esphome/esphome/pull/18480) by [@bdraco](https://github.com/bdraco)
+- [api] Bump noise-c to 0.1.21 [esphome#18484](https://github.com/esphome/esphome/pull/18484) by [@bdraco](https://github.com/bdraco)
+- [modbus] CRC scan all unknown function codes [esphome#18483](https://github.com/esphome/esphome/pull/18483) by [@exciton](https://github.com/exciton)
+- [platformio] Give the ccache wrapper a cmd.exe safe path [esphome#18495](https://github.com/esphome/esphome/pull/18495) by [@bdraco](https://github.com/bdraco)
+- [vscode] Report the origin of an unexpected exception during validation [esphome#18494](https://github.com/esphome/esphome/pull/18494) by [@bdraco](https://github.com/bdraco)
+- [esp32] Fix ESP32-P4 bootloop on rev3 (v3.x) chips when only variant is set [esphome#18500](https://github.com/esphome/esphome/pull/18500) by [@swoboda1337](https://github.com/swoboda1337)
+- [ci] Stop persisting the integration test ccache [esphome#18504](https://github.com/esphome/esphome/pull/18504) by [@swoboda1337](https://github.com/swoboda1337)
+- Bump bundled esphome-device-builder to 1.11.3 [esphome#18505](https://github.com/esphome/esphome/pull/18505) by [@esphome[bot]](https://github.com/apps/esphome)
+- Bump bundled esphome-device-builder to 1.11.4 [esphome#18506](https://github.com/esphome/esphome/pull/18506) by [@esphome[bot]](https://github.com/apps/esphome)
+- Bump bundled esphome-device-builder to 1.11.5 [esphome#18507](https://github.com/esphome/esphome/pull/18507) by [@esphome[bot]](https://github.com/apps/esphome)
+- Bump bundled esphome-device-builder to 1.12.0 [esphome#18514](https://github.com/esphome/esphome/pull/18514) by [@esphome[bot]](https://github.com/apps/esphome)
+- [image] Restore defaults:/files: support for platform entries [esphome#18032](https://github.com/esphome/esphome/pull/18032) by [@clydebarrow](https://github.com/clydebarrow) (new-feature)
+- [ci] Stop jobs hanging on apt by restoring the cached apt action and bounding raw apt calls [esphome#18518](https://github.com/esphome/esphome/pull/18518) by [@bdraco](https://github.com/bdraco)
 {/* BETA_CHANGES_END */}
 
 ### All changes
@@ -1308,6 +1322,20 @@ For detailed migration guides and API documentation, see the
 - [socket] Fix multi-second TCP stalls on ESP8266 by yielding to the SYS context [esphome#18455](https://github.com/esphome/esphome/pull/18455) by [@bdraco](https://github.com/bdraco)
 - [light] Replace rgb_order/is_rgbw/is_wrgb with channel_colors [esphome#18474](https://github.com/esphome/esphome/pull/18474) by [@jesserockz](https://github.com/jesserockz) (new-feature)
 - [gpio_expander][pcf8574][pca9554][tca9555][pca6416a][pi4ioe5v6408][mcp23016][mcp23xxx_base] Reject unsupported interrupt_pin options (inverted, allow_other_uses) [esphome#18472](https://github.com/esphome/esphome/pull/18472) by [@bdraco](https://github.com/bdraco)
+- [api] Bump noise-c to 0.1.20 [esphome#18482](https://github.com/esphome/esphome/pull/18482) by [@bdraco](https://github.com/bdraco)
+- [ci] Fail the benchmark job when the C++ benchmark build fails [esphome#18480](https://github.com/esphome/esphome/pull/18480) by [@bdraco](https://github.com/bdraco)
+- [api] Bump noise-c to 0.1.21 [esphome#18484](https://github.com/esphome/esphome/pull/18484) by [@bdraco](https://github.com/bdraco)
+- [modbus] CRC scan all unknown function codes [esphome#18483](https://github.com/esphome/esphome/pull/18483) by [@exciton](https://github.com/exciton)
+- [platformio] Give the ccache wrapper a cmd.exe safe path [esphome#18495](https://github.com/esphome/esphome/pull/18495) by [@bdraco](https://github.com/bdraco)
+- [vscode] Report the origin of an unexpected exception during validation [esphome#18494](https://github.com/esphome/esphome/pull/18494) by [@bdraco](https://github.com/bdraco)
+- [esp32] Fix ESP32-P4 bootloop on rev3 (v3.x) chips when only variant is set [esphome#18500](https://github.com/esphome/esphome/pull/18500) by [@swoboda1337](https://github.com/swoboda1337)
+- [ci] Stop persisting the integration test ccache [esphome#18504](https://github.com/esphome/esphome/pull/18504) by [@swoboda1337](https://github.com/swoboda1337)
+- Bump bundled esphome-device-builder to 1.11.3 [esphome#18505](https://github.com/esphome/esphome/pull/18505) by [@esphome[bot]](https://github.com/apps/esphome)
+- Bump bundled esphome-device-builder to 1.11.4 [esphome#18506](https://github.com/esphome/esphome/pull/18506) by [@esphome[bot]](https://github.com/apps/esphome)
+- Bump bundled esphome-device-builder to 1.11.5 [esphome#18507](https://github.com/esphome/esphome/pull/18507) by [@esphome[bot]](https://github.com/apps/esphome)
+- Bump bundled esphome-device-builder to 1.12.0 [esphome#18514](https://github.com/esphome/esphome/pull/18514) by [@esphome[bot]](https://github.com/apps/esphome)
+- [image] Restore defaults:/files: support for platform entries [esphome#18032](https://github.com/esphome/esphome/pull/18032) by [@clydebarrow](https://github.com/clydebarrow) (new-feature)
+- [ci] Stop jobs hanging on apt by restoring the cached apt action and bounding raw apt calls [esphome#18518](https://github.com/esphome/esphome/pull/18518) by [@bdraco](https://github.com/bdraco)
 {/* ALL_CHANGES_END */}
 
 </details>
